@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shuvadip Naskar | About section</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #2f3e46;
+      --accent: #cad2c5;
+      --accent-transparent: rgba(202, 210, 197, 0.8);
+      --bg: #f7f7f7;
+      --text: #333;
+      --card: #fff;
+      --shadow: rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--primary);
+      padding: 2rem;
+      color: var(--accent);
+      box-shadow: 0 4px 8px var(--shadow);
+      animation: slideInTop 0.5s ease-out forwards;
+      transform: translateY(-60px);
+      opacity: 0;
+      position: relative;
+    }
+
+    @keyframes slideInTop {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .home-button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background-color: var(--accent-transparent);
+      color: var(--primary);
+      padding: 0.3rem 1rem;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+
+    .home-button:hover {
+      background-color: rgba(202, 210, 197, 1);
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .info {
+      flex: 1;
+    }
+
+    .info h1 {
+      font-size: 2.5rem;
+    }
+
+    .info p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .main-wrapper {
+      display: flex;
+      flex-wrap: nowrap;
+      padding: 2rem;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .content {
+      flex: 0 0 60%;
+      max-width: 60%;
+    }
+
+    .roadmap-section {
+      flex: 0 0 40%;
+      max-width: 40%;
+      height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .roadmap-box {
+      margin-top: 25%;
+      background-color: var(--card);
+      border-radius: 30px;
+      box-shadow: 0 6px 12px var(--shadow);
+      padding: 1rem;
+      width: 96%;
+      height: 90%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .roadmap-svg {
+      width: 100%;
+      height: calc(100% - 2rem);
+    }
+
+    .svg-label {
+      font-size: 1rem;
+      fill: var(--text-color);
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-top: 0.1rem;
+      font-size: 1.6rem;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.2rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 1rem;
+    }
+
+    ul li::before {
+      content: "➤ ";
+      color: var(--primary);
+    }
+
+    .section-divider {
+      width: 98%;
+      height: 2px;
+      background-color: var(--accent);
+      margin: 2rem auto;
+    }
+
+    .contact-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 1rem;
+    }
+
+    .contact {
+      width: 800px;
+      background-color: var(--accent);
+      padding: 2rem 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px var(--shadow);
+      text-align: left;
+      border: 1px solid #d4ddd4;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .contact:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-title {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-line {
+      border: none;
+      height: 2px;
+      background-color: var(--primary);
+      width: 94%;
+      margin: 0.8rem auto;
+    }
+
+    .contact-details {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .contact-details p {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .contact-details i {
+      margin-right: 0.4rem;
+      color: var(--primary);
+    }
+
+    .contact-details a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .contact-details a:hover {
+      color: #2f3e46;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .main-wrapper {
+        flex-direction: column;
+      }
+
+      .content, .roadmap-section {
+        max-width: 100%;
+        flex: 100%;
+      }
+
+      .contact-details {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .contact {
+        width: 95%;
+      }
+    }
+
+    .milestone-group {
+      cursor: pointer;
+    }
+
+    .tooltip {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .milestone-group:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .tooltip-box {
+      background-color: #2f3e46;
+      color: white;
+      padding: 0.5rem;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shuvadip Naskar | About section</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #2f3e46;
+      --accent: #cad2c5;
+      --accent-transparent: rgba(202, 210, 197, 0.8);
+      --bg: #f7f7f7;
+      --text: #333;
+      --card: #fff;
+      --shadow: rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--primary);
+      padding: 2rem;
+      color: var(--accent);
+      box-shadow: 0 4px 8px var(--shadow);
+      animation: slideInTop 0.5s ease-out forwards;
+      transform: translateY(-60px);
+      opacity: 0;
+      position: relative;
+    }
+
+    @keyframes slideInTop {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .home-button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background-color: var(--accent-transparent);
+      color: var(--primary);
+      padding: 0.3rem 1rem;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+
+    .home-button:hover {
+      background-color: rgba(202, 210, 197, 1);
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .info {
+      flex: 1;
+    }
+
+    .info h1 {
+      font-size: 2.5rem;
+    }
+
+    .info p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .main-wrapper {
+      display: flex;
+      flex-wrap: nowrap;
+      padding: 2rem;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .content {
+      flex: 0 0 60%;
+      max-width: 60%;
+    }
+
+    .roadmap-section {
+      flex: 0 0 40%;
+      max-width: 40%;
+      height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+    }
+
+    .roadmap-box {
+      margin-top: 25%;
+      background-color: var(--card);
+      border-radius: 30px;
+      box-shadow: 0 6px 12px var(--shadow);
+      padding: 1rem;
+      width: 96%;
+      height: 90%;
+      position: relative;
+      overflow: visible;
+    }
+
+    .roadmap-svg {
+      width: 100%;
+      height: calc(100% - 2rem);
+      overflow: visible;
+    }
+
+    .label {
+      font-size: 1rem;
+      fill: var(--text);
+    }
+
+    .milestone-group {
+      cursor: pointer;
+    }
+
+    .tooltip {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .milestone-group:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .tooltip-box {
+      background-color: #2f3e46;
+      color: white;
+      padding: 0.5rem;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-top: 0.1rem;
+      font-size: 1.6rem;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.2rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 1rem;
+    }
+
+    ul li::before {
+      content: "➤ ";
+      color: var(--primary);
+    }
+
+    .section-divider {
+      width: 98%;
+      height: 2px;
+      background-color: var(--accent);
+      margin: 2rem auto;
+    }
+
+    .contact-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 1rem;
+    }
+
+    .contact {
+      width: 800px;
+      background-color: var(--accent);
+      padding: 2rem 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px var(--shadow);
+      text-align: left;
+      border: 1px solid #d4ddd4;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .contact:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-title {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-line {
+      border: none;
+      height: 2px;
+      background-color: var(--primary);
+      width: 94%;
+      margin: 0.8rem auto;
+    }
+
+    .contact-details {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .contact-details p {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .contact-details i {
+      margin-right: 0.4rem;
+      color: var(--primary);
+    }
+
+    .contact-details a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .contact-details a:hover {
+      color: #2f3e46;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .main-wrapper {
+        flex-direction: column;
+      }
+
+      .content, .roadmap-section {
+        max-width: 100%;
+        flex: 100%;
+      }
+
+      .contact-details {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .contact {
+        width: 95%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="home-button">Home</a>
+    <div class="header-content">
+      <div class="info">
+        <h1>Shuvadip Naskar</h1>
+        <p>AI Integrator | Automation Specialist | Workflow Optimizer</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-wrapper">
+    <div class="content">
+      <h2>About Me</h2>
+      <p>I’m a passionate technologist with a knack for streamlining operations. From electrical engineering roots to mastering Excel VBA automation, I create scalable solutions that boost productivity and simplify complex processes.</p>
+
+      <h2>Expertise</h2>
+      <ul>
+        <li>Excel VBA automation & advanced Excel techniques</li>
+        <li>Workflow optimization & data management</li>
+        <li>Email automation via Outlook integration</li>
+        <li>User-friendly UI design in Excel</li>
+      </ul>
+
+      <h2>Experience</h2>
+      <h3>Operations Apprentice – Varroc Engineering Ltd., Pune (August 2021 – August 2023)</h3>
+      <p>Gained hands-on experience in electrical assembly and supported Lean manufacturing practices like TPM and 5S. Assisted with store and dispatch coordination, contributing to efficient material flow.</p>
+
+      <h3>Operations Trainee – Sigma Engineered Solutions, Pune (September 2023 – Present)</h3>
+      <p>Manage Kanban inventory processes, coordinate material requests, and assist in weekly planning. Developed custom Excel tools with VBA to automate tasks and support autonomous maintenance and 5S initiatives.</p>
+
+            <h2>Mindset</h2>
+      <p>Curious and detail-driven, I love exploring new tech to build smart systems. I work both independently and collaboratively—always learning, always evolving.</p>
+
+      <h2>Beyond Work</h2>
+      <p>When I’m not coding solutions or optimizing workflows, you’ll find me experimenting with AI in daily life or exploring literature.</p>
+    </div>
+
+    <div class="roadmap-section">
+      <div class="roadmap-box">
+        <svg class="roadmap-svg" viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg">
+          <path d="M30 20 C180 60, 600 300, 90 250 S250 320, 70 400"
+                stroke="#2f3e46" stroke-width="2" fill="none"/>
+
+          <g class="milestone-group">
+            <image href="https://cdn-icons-png.flaticon.com/512/684/684908.png" x="20" y="0" width="24" height="24" />
+            <text x="46" y="17" class="label">Higher Secondary (2017)</text>
+            <foreignObject x="40" y="25" width="180" height="50" class="tooltip">
+              <div xmlns="http://www.w3.org/1999/xhtml" class="tooltip-box">
+                Fatepur Srinath Institution
+              </div>
+            </foreignObject>
+          </g>
+
+          <g class="milestone-group">
+            <image href="https://cdn-icons-png.flaticon.com/512/684/684908.png" x="181" y="66" width="24" height="24" />
+            <text x="205" y="85" class="label">Vocational (2019)</text>
+            <foreignObject x="190" y="95" width="180" height="50" class="tooltip">
+              <div xmlns="http://www.w3.org/1999/xhtml" class="tooltip-box">
+                Parulia Shree Ramkrishna Highschool
+              </div>
+            </foreignObject>
+          </g>
+
+          <g class="milestone-group">
+            <image href="https://cdn-icons-png.flaticon.com/512/684/684908.png" x="315" y="170" width="24" height="24" />
+            <text x="340" y="187" class="label">Diploma (2021)</text>
+            <foreignObject x="320" y="195" width="180" height="50" class="tooltip">
+              <div xmlns="http://www.w3.org/1999/xhtml" class="tooltip-box">
+                JLD Collage of Engineering and Management
+              </div>
+            </foreignObject>
+          </g>
+
+          <g class="milestone-group">
+            <image href="https://cdn-icons-png.flaticon.com/512/684/684908.png" x="43" y="220" width="24" height="24" />
+            <text x="70" y="239" class="label">Varroc Engineering Ltd. (2023)</text>
+            <foreignObject x="50" y="250" width="220" height="50" class="tooltip">
+              <div xmlns="http://www.w3.org/1999/xhtml" class="tooltip-box">
+                Operations - Apprentice (2Y)
+              </div>
+            </foreignObject>
+          </g>
+
+          <g class="milestone-group">
+            <image href="https://cdn-icons-png.flaticon.com/512/684/684908.png" x="58" y="375" width="24" height="24" />
+            <text x="99" y="393" class="label">Sigma Engineered Solutions (2025)</text>
+            <foreignObject x="65" y="405" width="220" height="50" class="tooltip">
+              <div xmlns="http://www.w3.org/1999/xhtml" class="tooltip-box">
+                Operations - Trainee (2Y)
+              </div>
+            </foreignObject>
+          </g>
+        </svg>
+        <div style="
+          position: absolute;
+          bottom: 10px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 1rem;
+          font-weight: 500;
+          color: silver;">
+          Educational and career milestones
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="contact-wrapper">
+    <div class="contact">
+      <h2 class="contact-title">Let’s Build Something Exceptional Together</h2>
+      <hr class="contact-line" />
+      <div class="contact-details">
+        <p><i class="fas fa-envelope"></i><a href="mailto:shuvadip237@gmail.com">shuvadip237@gmail.com</a></p>
+        <p><i class="fas fa-phone"></i><a href="tel:+917679329831">+91-7679329831</a></p>
+        <p><i class="fab fa-linkedin"></i><a href="https://linkedin.com/in/ShuvadipNaskar" target="_blank">Shuvadip Naskar</a></p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

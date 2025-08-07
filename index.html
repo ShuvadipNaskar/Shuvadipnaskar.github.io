@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shuvadip Naskar | Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdfbf5;
+      color: #333;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      user-select: none;
+      outline: none;
+    }
+
+
+    .night-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+
+.image-container {
+  position: absolute;
+  top:100pt;
+  right: 50pt;
+  width: 170px;
+  height: auto;
+  z-index: 1001;
+}
+
+.image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 170px;
+  height: auto;
+  transition: opacity 0.4s ease-in-out;
+
+  -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  mask-image: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+}
+
+.hover-image {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Night mode image swap */
+body.night-mode .image-container .hover-image {
+  opacity: 1;
+}
+
+body.night-mode .image-container .top-right-image {
+  opacity: 0;
+}
+
+
+    .top-right-buttons {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      z-index: 1000;
+      align-items: center;
+    }
+
+    .toggle-theme {
+      width: 60px;
+      height: 30px;
+      border-radius: 30px;
+      background-color: #666;
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+box-shadow: inset 2px 2px 6px rgba(0,0,0,0.25), inset -2px -2px 6px rgba(255,255,255,0.1);
+    }
+
+    .toggle-theme input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      position: absolute;
+    }
+
+    .slider {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      transition: transform 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+      background: radial-gradient(circle at center, #ffe199, #ffb347 70%, #ff8c42 90%);
+      box-shadow: 0 0 6px rgba(255, 179, 71, 0.4);
+    }
+
+    .toggle-theme input:checked ~ .slider {
+      transform: translateX(30px);
+      background: radial-gradient(circle at center, #dcdcdc, #a9a9a9 70%, #1a1a1a 90%);
+      box-shadow: 0 0 6px rgba(169, 169, 169, 0.3);
+    }
+.toggle-theme:hover {
+  background-color: #777; /* slightly darker on hover */
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2); /* soft inset shadow */
+}
+
+
+    .button {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-30px);
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      background-color: #1e4e79;
+      color: white;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 0 8px #1e4e79;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      width: 65px;
+      text-align: center;
+      display: inline-block;
+    }
+
+    .button.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .button:hover {
+ transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+    }
+
+    .night-mode .button {
+      background-color: #0a1c33;
+      border: 1px solid black;
+      box-shadow: 0 0 8px #0a1c33;
+    }
+
+    .night-mode .button:hover {
+      box-shadow: 0 0 10px rgba(10, 28, 51, 0.7);
+    }
+
+    header {
+      text-align: left;
+      padding: 4rem 2rem 5rem;
+background: linear-gradient(to right, #4682b4, #87ceeb);
+      color: #f4f4f4;
+      position: relative;
+      overflow: hidden;
+
+    }
+
+    .night-mode header {
+      background: linear-gradient(to right, #132f4c, #24476c);
+    }
+
+    /*  Starfield */
+    .night-mode .stars-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .night-mode .star {
+      position: absolute;
+      border-radius: 50%;
+      background-color: silver;
+      opacity: 0.8;
+      animation: twinkle 3s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.2; }
+      50% { opacity: 0.9; }
+      100% { opacity: 0.2; }
+    }
+
+    /* Shooting Star */
+    .night-mode .shooting-star {
+position: absolute;
+top: 25%;
+left: -60px;
+background-color: silver;
+width: 5px;
+height: 5px;
+border-radius: 50%;
+box-shadow: 0 0 6px silver; 
+border-radius: 2px;
+opacity: 0;
+animation: shoot 2s linear;
+pointer-events: none;
+z-index: 0;
+    }
+
+@keyframes shoot {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(120vw, 15vh); /* go right + down */
+    opacity: 0;
+  }
+}
+
+
+    h1 span {
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .fadeDown {
+      animation: fadeDown 1.5s ease;
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeText 1.5s ease forwards;
+      animation-delay: 1.6s;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeText {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      line-height: 0;
+    }
+
+    .wave path {
+      transition: fill 0.4s ease;
+      fill: #fdfbf5;
+    }
+
+    .night-mode .wave path {
+      fill: #1a1a1a !important;
+    }
+
+    section#projects {
+      padding: 2rem;
+      background-color: #fdfbf5;
+      text-align: center;
+      transition: background-color 0.4s ease;
+    }
+
+    .night-mode section#projects {
+      background-color: #1a1a1a;
+    }
+
+    section#projects h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #555;
+    }
+
+    .night-mode section#projects h2 {
+      color: ivory;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: white;
+      color: #333;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 280px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+	cursor: pointer;
+    }
+
+
+    .card:hover,
+    .card.animate-hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .night-mode .card {
+      background-color: #2a2a2a;
+      color: #ddd;
+      border: 0.2px solid gray;
+      box-shadow: 0 0 14px rgba(255, 255, 255, 0.12);
+    }
+
+    .card-header {
+      background-color: #eceff1;
+      height: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+            font-size: 1rem;
+      padding: 1rem;
+      border-bottom: 1px solid #e0e0e0;
+      color: #444;
+    }
+
+    .card-body {
+      padding: 1rem;
+      flex-grow: 1;
+    }
+
+    footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      background-color: #fdfbf5;
+      color: #666;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    .night-mode footer {
+      background-color: #1a1a1a;
+      color: #999;
+    }
+
+    a {
+      color: #1e4e79;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+.night-mode .github-text {
+  color: orange;
+}
+</style>
+</head>
+<body tabindex="-1">
+<div class="image-container">
+  <img src="IMAGES/jj1.png" alt="Top Right Icon" class="top-right-image" />
+  <img src="IMAGES/jj2.png" alt="Hover Image" class="hover-image" />
+</div>
+
+
+  <div class="top-right-buttons">
+    <label class="toggle-theme">
+      <input type="checkbox" id="theme-toggle" />
+      <span class="slider"></span>
+    </label>
+    <a href="about me.html" class="button" style="--i:0;">About me</a>
+    <a href="certificates.html" class="button" style="--i:1;">Certificates</a>
+
+    <a href="Shuvadip Naskar.pdf" class="button" style="--i:4;" target="_blank" rel="noopener noreferrer">Resume</a>
+  </div>
+
+  <header>
+    <div class="stars-container" id="stars"></div>
+    <div id="shooting-star-container"></div>
+    <h1 class="fadeDown">Hi, I'm <span>Shuvadip Naskar</span></h1>
+    <p class="fade-in">Excel Automator | AI Integrator | Workflow Optimizer</p>
+
+    <div class="wave">
+      <svg viewBox="0 0 500 50" preserveAspectRatio="none" style="width: 100%; height: 50px;">
+        <path d="M0,30 C150,60 350,0 500,30 L500,50 L0,50 Z"></path>
+      </svg>
+    </div>
+  </header>
+
+  <section id="projects">
+    <h2>MY PROJECTS</h2>
+    <div class="card-container">
+      <div class="card">
+        <div class="card-header">WEEKLY PLAN MANAGER</div>
+        <div class="card-body">
+          <p>A fully automated workbook for managing weekly production data.</p>
+        </div>
+
+      </div>
+      <div class="card">
+        <div class="card-header">KANBAN REQUISITION SYSTEM</div>
+        <div class="card-body">
+          <p>An Excel-based single-click Kanban requisition system.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">KANBAN TAG GENERATOR</div>
+        <div class="card-body">
+          <p>An automated scalable tag and ID generation tool.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+<footer>
+  <p>Connect with me on <a href="https://github.com/ShuvadipNaskar"><span class="github-text">GitHub</span></a></p>
+</footer>
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    toggle.addEventListener('change', () => {
+      document.body.classList.toggle('night-mode');
+      const wavePath = document.querySelector('.wave path');
+      wavePath.style.fill = document.body.classList.contains('night-mode') ? '#1a1a1a' : '#fdfbf5';
+
+      if (document.body.classList.contains('night-mode')) {
+        generateStars();
+        createShootingStar();
+      } else {
+        document.getElementById('stars').innerHTML = '';
+        document.getElementById('shooting-star-container').innerHTML = '';
+      }
+    });
+ 
+    document.querySelectorAll('.top-right-buttons .button').forEach((btn, i) => {
+      setTimeout(() => {
+        btn.classList.add('visible');
+      }, 300 + i * 80);
+    });
+
+    const cards = document.querySelectorAll('.card');
+    function animateCardsSequentially() {
+      let index = 0;
+      function animateNext() {
+        if (index < cards.length) {
+          cards[index].classList.add('animate-hover');
+          setTimeout(() => {
+            cards[index].classList.remove('animate-hover');
+            index++;
+            animateNext();
+          }, 250);
+        } else {
+          setTimeout(animateCardsSequentially, 15000);
+        }
+      }
+      animateNext();
+    }
+    setTimeout(animateCardsSequentially, 15000);
+
+    function generateStars() {
+      const container = document.getElementById('stars');
+      container.innerHTML = '';
+      for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        const size = Math.random() * 2 + 0.5;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.animationDuration = `${Math.random() * 4 + 2}s`;
+        container.appendChild(star);
+      }
+    }
+
+    function createShootingStar() {
+      const container = document.getElementById('shooting-star-container');
+      if (!document.body.classList.contains('night-mode')) return;
+
+      const star = document.createElement('div');
+      star.classList.add('shooting-star');
+      container.appendChild(star);
+
+      setTimeout(() => {
+        container.removeChild(star);
+      }, 2000);
+    }
+
+    setInterval(() => {
+      if (document.body.classList.contains('night-mode')) {
+        createShootingStar();
+      }
+    }, 40000);
+
+    if (document.body.classList.contains('night-mode')) {
+      generateStars();
+      createShootingStar();
+    }
+
+document.querySelectorAll('.card').forEach((card, index) => {
+  card.addEventListener('click', () => {
+    const links = ["p1.html", "p2.html", "p3.html"];
+    window.location.href = links[index];
+  });
+});
+
+  </script>
+</body>
+</html>

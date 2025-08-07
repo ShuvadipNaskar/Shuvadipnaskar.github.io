@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weekly Production Plan Manager</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #2c2c2c, #1a1a1a);
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+header {
+  height: 8vh;
+  background: linear-gradient(to right, #217346, #1c401f);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1%;
+  font-size: 1.6em;
+  font-weight: bold;
+  color: white;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.85);
+}
+
+.home-button {
+  font-size: 0.7em;
+  color: white;
+  text-decoration: none;
+  background-color: rgba(255,255,255,0.1);
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.3);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-weight: none;
+}
+
+.home-button:hover {
+  background-color: rgba(255,255,255,0.2);
+  transform: scale(1.05);
+}
+
+
+    .main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4vh 5vw 2vh;
+      gap: 60px;
+      width: 70%;
+      margin: 0 auto;
+    }
+
+    .ring-holder {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 320px;
+      flex-shrink: 0;
+    }
+
+    .ring-container {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 6px solid silver;
+      background-color: transparent;
+      box-shadow: 0 0 25px rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.7s ease;
+      cursor: pointer;
+    }
+
+    .ring-container:hover {
+      background-color: rgba(0,0,0,0.4);
+      box-shadow: 0 0 10px silver, inset 0 0 35px rgba(0,0,0,0.8);
+    }
+
+    .ring-container img {
+      width: 64px;
+      height: 64px;
+      transition: box-shadow 0.7s ease;
+    }
+
+    .ring-container:hover img {
+      box-shadow: 0 0 15px rgba(0,0,0,0.9);
+    }
+
+    .ring-text {
+      position: absolute;
+      bottom: -80px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9em;
+      color: silver;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+    }
+
+    .ring-container:hover .ring-text {
+      opacity: 1;
+    }
+
+    .image-section {
+      display: flex;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .image-card {
+      width: 420px;
+      background: linear-gradient(to bottom right, #d0d0d0, #a0a0a0);
+      border-radius: 16px;
+      border: 1px solid silver;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .image-card img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      transition: transform 0.2s ease;
+    }
+
+    .image-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .description {
+	
+      margin: 10vh auto 3vh;
+      width: 70%;
+      background-color: rgba(40,40,40,0.9);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.5);
+      border: 1px solid silver;
+      position: relative;
+    }
+
+    .description h2 {
+      margin-bottom: 15px;
+      color: #e0e0e0;
+      font-size: 1.3em;
+    }
+
+    .description ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+    .description li {
+      margin-bottom: 10px;
+      font-size: 1.05em;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      backdrop-filter: blur(5px);
+      background-color: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .overlay img {
+      transform: scale(0.9);
+      opacity: 0;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      border: 2px solid silver;
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
+    }
+
+    .overlay.active img {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    @media (max-width: 1024px) {
+      .main {
+        flex-direction: column;
+        align-items: center;
+      }
+      .description {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div style="flex-grow: 1;">KANBAN REQUISITION SYSTEM</div>
+  <a href="index.html" class="home-button">Home</a>
+</header>
+
+
+  <div class="main">
+    <div class="ring-holder">
+      <div class="ring-container" onclick="downloadFile()">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732220.png" alt="Excel Icon" />
+        <div class="ring-text">Click the icon to download Weekly plan manager</div>
+      </div>
+    </div>
+
+    <div class="image-section">
+      <div class="image-card" onclick="openOverlay('IMAGES/P2-1.png')">
+        <img src="IMAGES/P2-1.png" alt="Production Image 1" />
+      </div>
+      <div class="image-card" onclick="openOverlay('IMAGES/P2-2.png')">
+        <img src="IMAGES/P2-2.png" alt="Production Image 2" />
+      </div>
+    </div>
+  </div>
+
+  <div class="description">
+    <h2>📌 Project Summary</h2>
+    <ul>
+      <li>This is a single step Kanban requisition system./li>
+      <li>In this project, manual tasks like  Data filtering, file creation with the current date, and email preparation can be completed within seconds through VBA automation.</li>
+      <li>It automatically fills Mail recipient's details and message body to reduce human error and save time.</li>
+      <li>No time consuming exytra steps like Pivot refresh, Copy-paste, data filtering are required. All the manual steps are completed with macro.</li>
+    </ul>
+  </div>
+
+  <div class="overlay" onclick="closeOverlay()" id="imgOverlay">
+    <img src="" id="overlayImg" alt="Full Image" />
+  </div>
+
+  <script>
+    function downloadFile() {
+      const ring = document.querySelector('.ring-container');
+      ring.classList.add('downloading');
+
+      const link = document.createElement('a');
+      link.href = 'KANBAN REQUISITION SYSTEM.xlsm';
+      link.download = 'KANBAN REQUISITION SYSTEM.xlsm';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      setTimeout(() => {
+        ring.classList.remove('downloading');
+      }, 1000);
+    }
+
+    function openOverlay(src) {
+      const overlay = document.getElementById('imgOverlay');
+      const overlayImg = document.getElementById('overlayImg');
+      overlayImg.src = src;
+      overlay.classList.add('active');
+    }
+
+    function closeOverlay() {
+      const overlay = document.getElementById('imgOverlay');
+      overlay.classList.remove('active');
+      setTimeout(() => {
+        document.getElementById('overlayImg').src = '';
+      }, 500);
+    }
+  </script>
+</body>
+</html>

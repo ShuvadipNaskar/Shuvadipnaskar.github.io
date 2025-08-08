@@ -17,6 +17,13 @@
       --shadow: rgba(0, 0, 0, 0.08);
     }
 
+    body.night-mode {
+      --bg: #121212;
+      --text: #eee;
+      --card: #1f1f1f;
+      --shadow: rgba(255, 255, 255, 0.05);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -32,10 +39,10 @@
     }
 
     header {
-      background-color: var(--primary);
+      background-color: #2f3e46;
       padding: 2rem;
-      color: var(--accent);
-      box-shadow: 0 4px 8px var(--shadow);
+      color: #cad2c5;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
       animation: slideInTop 0.5s ease-out forwards;
       transform: translateY(-60px);
       opacity: 0;
@@ -53,8 +60,8 @@
       position: absolute;
       top: 1rem;
       right: 1rem;
-      background-color: var(--accent-transparent);
-      color: var(--primary);
+      background-color: rgba(202, 210, 197, 0.8);
+      color: #2f3e46;
       padding: 0.3rem 1rem;
       text-decoration: none;
       border-radius: 5px;
@@ -112,6 +119,10 @@
       align-items: center;
     }
 
+    body.night-mode .image-container {
+      border: 1px solid silver;
+    }
+
     .image-container:hover {
       transform: scale(1.02);
     }
@@ -121,13 +132,13 @@
       height: auto;
       display: block;
       border-radius: 12px;
-      border: 1px solid #ccc; /* Thin border for separation */
+      border: 1px solid #ccc;
     }
 
     .caption {
       margin-top: 0.5rem;
       font-size: 1rem;
-      color: var(--primary);
+      color: #2f3e46;
       text-align: center;
       font-weight: 500;
       padding-bottom: 0.5rem;
@@ -143,7 +154,6 @@
       }
     }
 
-    /* Modal styles */
     .modal {
       position: fixed;
       top: 0;
@@ -194,6 +204,12 @@
   </style>
 </head>
 <body>
+  <script>
+    // Apply night mode if saved in localStorage
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('night-mode');
+    }
+  </script>
 
   <header>
     <a href="index.html" class="home-button">Home</a>
@@ -221,7 +237,6 @@
     </div>
   </div>
 
-  <!-- Modal -->
   <div class="modal" id="imageModal" onclick="closeModal()">
     <div class="modal-content" onclick="event.stopPropagation()">
       <img id="modalImage" src="" alt="Expanded Certificate" />
@@ -241,6 +256,5 @@
       modal.classList.remove('active');
     }
   </script>
-
 </body>
 </html>

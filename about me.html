@@ -17,6 +17,16 @@
       --shadow: rgba(0, 0, 0, 0.08);
     }
 
+    body.night-mode {
+      --primary: #1a1a1a;
+      --accent: #444;
+      --accent-transparent: rgba(68, 68, 68, 0.8);
+      --bg: #121212;
+      --text: #eee;
+      --card: #1f1f1f;
+      --shadow: rgba(255, 255, 255, 0.05);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -31,10 +41,10 @@
     }
 
     header {
-      background-color: var(--primary);
+      background-color: #2f3e46;
       padding: 2rem;
-      color: var(--accent);
-      box-shadow: 0 4px 8px var(--shadow);
+      color: #cad2c5;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
       animation: slideInTop 0.5s ease-out forwards;
       transform: translateY(-60px);
       opacity: 0;
@@ -52,8 +62,8 @@
       position: absolute;
       top: 1rem;
       right: 1rem;
-      background-color: var(--accent-transparent);
-      color: var(--primary);
+      background-color: rgba(202, 210, 197, 0.8);
+      color: #2f3e46;
       padding: 0.3rem 1rem;
       text-decoration: none;
       border-radius: 5px;
@@ -120,10 +130,18 @@
       overflow: visible;
     }
 
+    body.night-mode .roadmap-box {
+      border: 1px solid silver;
+    }
+
     .roadmap-svg {
       width: 100%;
       height: calc(100% - 2rem);
       overflow: visible;
+    }
+
+    body.night-mode .roadmap-svg path {
+      stroke: silver;
     }
 
     .label {
@@ -155,12 +173,21 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
+    body.night-mode .tooltip-box {
+      background-color: #333;
+      color: #f0f0f0;
+    }
+
     h2 {
       color: var(--primary);
       margin-top: 0.1rem;
       font-size: 1.6rem;
       border-bottom: 2px solid var(--accent);
       padding-bottom: 0.2rem;
+    }
+
+    body.night-mode h2 {
+      color: ivory;
     }
 
     ul {
@@ -180,6 +207,10 @@
       margin: 2rem auto;
     }
 
+    body.night-mode .section-divider {
+      background-color: #444;
+    }
+
     .contact-wrapper {
       display: flex;
       justify-content: center;
@@ -189,13 +220,21 @@
 
     .contact {
       width: 800px;
-      background-color: var(--accent);
+      background-color: #cad2c5;
       padding: 2rem 2.5rem;
       border-radius: 12px;
-      box-shadow: 0 6px 12px var(--shadow);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
       text-align: left;
       border: 1px solid #d4ddd4;
       transition: box-shadow 0.3s ease;
+      color: #333;
+    }
+
+    body.night-mode .contact {
+      background-color: #cad2c5;
+      border: 1px solid #d4ddd4;
+      color: #333;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
     }
 
     .contact:hover {
@@ -206,16 +245,25 @@
       text-align: center;
       font-size: 1.6rem;
       font-weight: 600;
-      color: var(--primary);
+      color: #2f3e46;
       margin-bottom: 0.5rem;
+    }
+
+    body.night-mode .contact-title {
+      color: #2f3e46;
+border-bottom: none;
     }
 
     .contact-line {
       border: none;
       height: 2px;
-      background-color: var(--primary);
+      background-color: #2f3e46;
       width: 94%;
       margin: 0.8rem auto;
+    }
+
+    body.night-mode .contact-line {
+      background-color: #2f3e46;
     }
 
     .contact-details {
@@ -235,14 +283,18 @@
 
     .contact-details i {
       margin-right: 0.4rem;
-      color: var(--primary);
+      color: #2f3e46;
     }
 
     .contact-details a {
-      color: var(--primary);
+      color: #2f3e46;
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s ease;
+    }
+
+    body.night-mode .contact-details a {
+      color: #2f3e46;
     }
 
     .contact-details a:hover {
@@ -272,6 +324,12 @@
   </style>
 </head>
 <body>
+  <script>
+    // Apply night mode if saved in localStorage
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('night-mode');
+    }
+  </script>
 
   <header>
     <a href="index.html" class="home-button">Home</a>
@@ -303,7 +361,7 @@
       <h3>Operations Trainee – Sigma Engineered Solutions, Pune (September 2023 – Present)</h3>
       <p>Manage Kanban inventory processes, coordinate material requests, and assist in weekly planning. Developed custom Excel tools with VBA to automate tasks and support autonomous maintenance and 5S initiatives.</p>
 
-            <h2>Mindset</h2>
+      <h2>Mindset</h2>
       <p>Curious and detail-driven, I love exploring new tech to build smart systems. I work both independently and collaboratively—always learning, always evolving.</p>
 
       <h2>Beyond Work</h2>
@@ -389,16 +447,10 @@
       <div class="contact-details">
         <p><i class="fas fa-envelope"></i><a href="mailto:shuvadip237@gmail.com">shuvadip237@gmail.com</a></p>
         <p><i class="fas fa-phone"></i><a href="tel:+917679329831">+91-7679329831</a></p>
-        <p><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/
-shuvadip-naskar" target="_blank">Shuvadip Naskar</a></p>
+        <p><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/shuvadip-naskar" target="_blank">Shuvadip Naskar</a></p>
       </div>
     </div>
   </div>
-
 </body>
 </html>
-
-
-
-
 
